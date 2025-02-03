@@ -1,5 +1,5 @@
 {
-  "name": "react-native-atoms",
+  "name": "@vuduc0801/react-native-atoms",
   "version": "1.0.0",
   "description": "Build atoms ui for react native",
   "main": "./dist/index.js",
@@ -46,9 +46,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuduc0910/react-native-atoms.git"
+    "url": "git+https://github.com/vuduc0910/react-native-atoms.git"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/vuduc0910/react-native-atoms/issues"
+  },
+  "homepage": "https://github.com/vuduc0910/react-native-atoms#readme"
 }
