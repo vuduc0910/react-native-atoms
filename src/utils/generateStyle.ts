@@ -5,29 +5,31 @@ export function generateStyle({
   sizes,
   stroke,
   shadows,
+  colors,
 }: {
-  radius: Record<string, number>
-  fontSizes: Record<string, number>
-  fontWeights: Record<string, string | number | undefined>
-  sizes: Record<string, number>
-  stroke: Record<string, number>
+  radius: Record<string, number>;
+  fontSizes: Record<string, number>;
+  fontWeights: Record<string, string | number | undefined>;
+  sizes: Record<string, number>;
+  stroke: Record<string, number>;
   shadows: Record<
     string,
     {
-      shadowColor: string
-      shadowOffset: { width: number; height: number }
-      shadowRadius: number
-      shadowOpacity: number
-      elevation: number
+      shadowColor: string;
+      shadowOffset: { width: number; height: number };
+      shadowRadius: number;
+      shadowOpacity: number;
+      elevation: number;
     }
-  >
+  >;
+  colors: Record<string, string | string[]>;
 }) {
   const transformKey = (key: string) => {
-    return key.replace('.', '_')
-  }
+    return key.replace(".", "_");
+  };
 
   // RADIUS
-  let radiusStyles = ''
+  let radiusStyles = "";
   for (const [key, value] of Object.entries(radius)) {
     radiusStyles += `
           rounded_${key}: {
@@ -41,7 +43,7 @@ export function generateStyle({
             borderBottomLeftRadius: ${value},
             borderBottomRightRadius: ${value},
           },
-        `
+        `;
   }
 
   // TYPOGRAPHY
@@ -76,76 +78,76 @@ export function generateStyle({
         line_through: {
           textDecorationLine: 'line-through',
         },
-      `
+      `;
   for (const [key, value] of Object.entries(fontSizes)) {
     textStyles += `text_${key}: {
           fontSize: ${value},
-      },\n`
+      },\n`;
   }
 
   for (const [key, value] of Object.entries(fontWeights)) {
     textStyles += `font_${key}: {
           fontWeight: ${value},
-      },\n`
+      },\n`;
   }
 
   // PADDING & MARGIN & GAP
-  let paddingStyles = ''
-  let marginStyles = ''
-  let gapStyles = ''
+  let paddingStyles = "";
+  let marginStyles = "";
+  let gapStyles = "";
 
   for (const [key, value] of Object.entries(sizes)) {
     paddingStyles += `p_${transformKey(key)}: {
           padding: ${value},
-      },\n`
+      },\n`;
     paddingStyles += `pt_${transformKey(key)}: {
           paddingTop: ${value},
-      },\n`
+      },\n`;
     paddingStyles += `pr_${transformKey(key)}: {
           paddingRight: ${value},
-      },\n`
+      },\n`;
     paddingStyles += `pb_${transformKey(key)}: {
           paddingBottom: ${value},
-      },\n`
+      },\n`;
     paddingStyles += `pl_${transformKey(key)}: {
           paddingLeft: ${value},
-      },\n`
+      },\n`;
     paddingStyles += `px_${transformKey(key)}: {
           paddingLeft: ${value},
           paddingRight: ${value},
-      },\n`
+      },\n`;
     paddingStyles += `py_${transformKey(key)}: {
           paddingTop: ${value},
           paddingBottom: ${value},
-      },\n`
+      },\n`;
 
     marginStyles += `m_${transformKey(key)}: {
           margin: ${value},
-      },\n`
+      },\n`;
     marginStyles += `mt_${transformKey(key)}: {
           marginTop: ${value},
-      },\n`
+      },\n`;
     marginStyles += `mr_${transformKey(key)}: {
           marginRight: ${value},
-      },\n`
+      },\n`;
     marginStyles += `mb_${transformKey(key)}: {
           marginBottom: ${value},
-      },\n`
+      },\n`;
     marginStyles += `ml_${transformKey(key)}: {
           marginLeft: ${value},
-      },\n`
+      },\n`;
     marginStyles += `mx_${transformKey(key)}: {
           marginLeft: ${value},
           marginRight: ${value},
-      },\n`
+      },\n`;
     marginStyles += `my_${transformKey(key)}: {
           marginTop: ${value},
           marginBottom: ${value},
-      },\n`
+      },\n`;
 
     gapStyles += `gap_${transformKey(key)}: {
           gap: ${value},
-      },\n`
+      },\n`;
   }
 
   // WIDTH & HEIGHT
@@ -156,11 +158,11 @@ export function generateStyle({
         w_auto: {
           width: 'auto',
         },
-      `
+      `;
   for (const [key, value] of Object.entries(sizes)) {
     widthStyles += `w_${transformKey(key)}: {
           width: ${value},
-      },\n`
+      },\n`;
   }
 
   let heightStyles = `
@@ -170,35 +172,35 @@ export function generateStyle({
         h_auto: {
           height: 'auto',
         },
-      `
+      `;
   for (const [key, value] of Object.entries(sizes)) {
     heightStyles += `h_${transformKey(key)}: {
           height: ${value},
-        },\n`
+        },\n`;
   }
 
   // Border Width
-  let borderWidthStyles = ''
+  let borderWidthStyles = "";
   for (const [key, value] of Object.entries(stroke)) {
     borderWidthStyles += `border_${transformKey(key)}: {
           borderWidth: ${value},
-        },\n`
+        },\n`;
     borderWidthStyles += `border_t_${transformKey(key)}: {
           borderTopWidth: ${value},
-        },\n`
+        },\n`;
     borderWidthStyles += `border_r_${transformKey(key)}: {
           borderRightWidth: ${value},
-        },\n`
+        },\n`;
     borderWidthStyles += `border_b_${transformKey(key)}: {
           borderBottomWidth: ${value},
-        },\n`
+        },\n`;
     borderWidthStyles += `border_l_${transformKey(key)}: {
           borderLeftWidth: ${value},
-        },\n`
+        },\n`;
   }
 
   // Shadows
-  let shadowStyles = ''
+  let shadowStyles = "";
   for (const [key, value] of Object.entries(shadows)) {
     shadowStyles += `shadow_${transformKey(key)}: {
           shadowOffset: {
@@ -208,16 +210,45 @@ export function generateStyle({
           shadowRadius: ${value.shadowRadius},
           shadowOpacity: ${value.shadowOpacity},
           elevation: ${value.elevation},
-        },\n`
+        },\n`;
   }
 
   // Resize modes
-  const resizeModes = ['cover', 'contain', 'stretch', 'repeat', 'center'] as const
-  let resizeModeStyles = ''
+  const resizeModes = [
+    "cover",
+    "contain",
+    "stretch",
+    "repeat",
+    "center",
+  ] as const;
+  let resizeModeStyles = "";
   for (const resizeMode of resizeModes) {
     resizeModeStyles += `resize_${resizeMode}: {
           resizeMode: '${resizeMode}',
-        },\n`
+        },\n`;
+  }
+
+  // background colors
+  let backgroundColorStyles = "";
+  let colorStyles = "";
+  for (const [key, value] of Object.entries(colors)) {
+    if (Array.isArray(value)) {
+      for (const [index, color] of value.entries()) {
+        backgroundColorStyles += `bg_${transformKey(key)}_${index}: {
+          backgroundColor: '${color}',
+        },\n`;
+        colorStyles += `text_${transformKey(key)}_${index}: {
+          color: '${color}',
+        },\n`;
+      }
+    } else {
+      backgroundColorStyles += `bg_${transformKey(key)}: {
+        backgroundColor: '${value}',
+      },\n`;
+      colorStyles += `text_${transformKey(key)}: {
+        color: '${value}',
+      },\n`;
+    }
   }
 
   const content = `/* Auto-generated. DO NOT EDIT. */
@@ -351,7 +382,9 @@ export function generateStyle({
         ${borderWidthStyles}
         ${shadowStyles}
         ${resizeModeStyles}
+        ${backgroundColorStyles}
+        ${colorStyles}
       } as const
-      `
-  return content
+      `;
+  return content;
 }
