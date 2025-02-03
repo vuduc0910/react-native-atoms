@@ -1,0 +1,51 @@
+{
+  "name": "@richard/react-native-atoms",
+  "version": "1.0.0",
+  "description": "Build atoms ui for react native",
+  "main": "./dist/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/esm/index.js",
+        "types": "./dist/index.d.mts"
+      },
+      "require": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    }
+  },
+  "bin": {
+    "atoms": "dist/cli.js"
+  },
+  "scripts": {
+    "biome:check": "biome check --write",
+    "build": "tsup",
+    "build:watch": "tsup --watch ./src"
+  },
+  "keywords": [
+    "atoms",
+    "ui",
+    "react-native"
+  ],
+  "author": "Richard",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "react-native": "^0.75.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vuduc0910/react-native-atoms.git"
+  }
+}

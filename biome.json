@@ -1,0 +1,9 @@
+{
+  "extends": ["../../biome.json"],
+  "files": {
+    "ignore": ["dist"]
+  },
+  "organizeImports": {
+    "enabled": true
+  }
+}
