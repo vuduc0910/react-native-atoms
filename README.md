@@ -1,8 +1,6 @@
-# @fan-plus/atoms
-
 ## Setup
 
-1. Add package `@fan-plus/atoms`
+1. Add package `react-native-atoms`
 2. Create file `atoms.config.js`
 3. Export the configuration
 
