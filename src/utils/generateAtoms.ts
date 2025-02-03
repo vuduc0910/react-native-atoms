@@ -6,7 +6,7 @@ import { generateStyle } from "./generateStyle";
 
 export async function generateAtoms() {
   console.log("Start generating atoms!");
-  const configFilePath = path.join(process.cwd(), "atoms.config.js");
+  const configFilePath = path.join(process.cwd(), "atoms.config.mjs");
 
   if (!fs.existsSync(configFilePath)) {
     console.error("File atoms.config.ts not found.");
