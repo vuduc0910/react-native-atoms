@@ -288,9 +288,6 @@ export function generateStyle({
         overflow_hidden: {
           overflow: 'hidden',
         },
-        bg_transparent: {
-          backgroundColor: 'transparent',
-        },
         flex: {
           display: 'flex',
         },
