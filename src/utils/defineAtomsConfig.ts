@@ -15,6 +15,7 @@ interface AtomsConfig {
   fontSizes?: Record<string, number>;
   fontWeights?: Record<string, string | number | undefined>;
   colors?: Record<string, string | string[]>;
+  fontFamilies?: Record<string, string>;
 }
 
 export function defineAtomsConfig(config: AtomsConfig): Required<AtomsConfig> {
@@ -27,5 +28,6 @@ export function defineAtomsConfig(config: AtomsConfig): Required<AtomsConfig> {
     fontSizes: config.fontSizes || fontSize,
     fontWeights: config.fontWeights || fontWeight,
     colors: config.colors || {},
+    fontFamilies: config.fontFamilies || {},
   };
 }
