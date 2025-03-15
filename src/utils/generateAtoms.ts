@@ -27,6 +27,7 @@ export async function generateAtoms() {
     fontSizes: config.default.fontSizes,
     fontWeights: config.default.fontWeights,
     colors: config.default.colors,
+    fontFamilies: config.default.fontFamilies,
   });
 
   // Write the generated content to atoms.ts

@@ -6,12 +6,14 @@ export function generateStyle({
   stroke,
   shadows,
   colors,
+  fontFamilies,
 }: {
   radius: Record<string, number>;
   fontSizes: Record<string, number>;
   fontWeights: Record<string, string | number | undefined>;
   sizes: Record<string, number>;
   stroke: Record<string, number>;
+  fontFamilies: Record<string, string>;
   shadows: Record<
     string,
     {
@@ -250,6 +252,12 @@ export function generateStyle({
       },\n`;
     }
   }
+  let fontFamilyStyles = "";
+  for (const [key, value] of Object.entries(fontFamilies)) {
+    fontFamilyStyles += `font_${transformKey(key)}: {
+      fontFamily: '${value}',
+    },\n`;
+  }
 
   const content = `/* Auto-generated. DO NOT EDIT. */
       import { Platform } from 'react-native'
@@ -381,6 +389,7 @@ export function generateStyle({
         ${resizeModeStyles}
         ${backgroundColorStyles}
         ${colorStyles}
+        ${fontFamilyStyles}
       } as const
       `;
   return content;
