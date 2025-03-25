@@ -233,6 +233,7 @@ export function generateStyle({
   // background colors
   let backgroundColorStyles = "";
   let colorStyles = "";
+  let borderColorStyles = "";
   for (const [key, value] of Object.entries(colors)) {
     if (Array.isArray(value)) {
       for (const [index, color] of value.entries()) {
@@ -242,6 +243,9 @@ export function generateStyle({
         colorStyles += `text_${transformKey(key)}_${index}: {
           color: '${color}',
         },\n`;
+        borderColorStyles += `border_${transformKey(key)}_${index}: {
+          borderColor: '${color}',
+        },\n`;
       }
     } else {
       backgroundColorStyles += `bg_${transformKey(key)}: {
@@ -249,6 +253,9 @@ export function generateStyle({
       },\n`;
       colorStyles += `text_${transformKey(key)}: {
         color: '${value}',
+      },\n`;
+      borderColorStyles += `border_${transformKey(key)}: {
+        borderColor: '${value}',
       },\n`;
     }
   }
@@ -389,6 +396,7 @@ export function generateStyle({
         ${resizeModeStyles}
         ${backgroundColorStyles}
         ${colorStyles}
+        ${borderColorStyles}
         ${fontFamilyStyles}
       } as const
       `;
