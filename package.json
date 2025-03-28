@@ -1,6 +1,6 @@
 {
   "name": "@vuduc0801/react-native-atoms",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Build atoms ui for react native",
   "main": "./dist/index.js",
   "module": "./dist/esm/index.js",
