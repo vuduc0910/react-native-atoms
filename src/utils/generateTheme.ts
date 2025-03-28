@@ -1,32 +1,32 @@
-import type { AtomsStyle, ThemeToken } from '../types/theme'
+import type { AtomsStyle, ThemeToken } from "../types/theme";
 
 export function generateTheme<T extends ThemeToken>(theme: T): AtomsStyle<T> {
-  const data: ThemeToken = {}
+  const data: ThemeToken = {};
   for (const [key, value] of Object.entries(theme)) {
-    if (key.startsWith('text_')) {
+    if (key.startsWith("text_")) {
       data[key] = {
         color: value,
-      }
-      continue
+      };
+      continue;
     }
-    if (key.startsWith('bg_')) {
+    if (key.startsWith("bg_")) {
       data[key] = {
         backgroundColor: value,
-      }
-      continue
+      };
+      continue;
     }
-    if (key.startsWith('stroke_')) {
+    if (key.startsWith("stroke_") || key.startsWith("border_")) {
       data[key] = {
         borderColor: value,
-      }
-      continue
+      };
+      continue;
     }
-    if (key.startsWith('shadow_')) {
+    if (key.startsWith("shadow_")) {
       data[key] = {
         shadowColor: value,
-      }
+      };
     }
   }
 
-  return data as AtomsStyle<T>
+  return data as AtomsStyle<T>;
 }
