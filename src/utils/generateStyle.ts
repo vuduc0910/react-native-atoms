@@ -265,6 +265,13 @@ export function generateStyle({
       fontFamily: '${value}',
     },\n`;
   }
+  let fontWeightStyles = "";
+  const weight = [300, 400, 500, 600, 700];
+  for (const w of weight) {
+    fontWeightStyles += `font_weight_${w}: {
+      fontWeight: '${w}',
+    },\n`;
+  }
 
   const content = `/* Auto-generated. DO NOT EDIT. */
       import { Platform } from 'react-native'
@@ -384,6 +391,7 @@ export function generateStyle({
         aspect_square: {
           aspectRatio: 1,
         },
+  
         ${radiusStyles}
         ${textStyles}
         ${paddingStyles}
@@ -398,6 +406,7 @@ export function generateStyle({
         ${colorStyles}
         ${borderColorStyles}
         ${fontFamilyStyles}
+        ${fontWeightStyles}
       } as const
       `;
   return content;
