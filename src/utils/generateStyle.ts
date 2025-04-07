@@ -87,12 +87,6 @@ export function generateStyle({
       },\n`;
   }
 
-  for (const [key, value] of Object.entries(fontWeights)) {
-    textStyles += `font_${key}: {
-          fontWeight: ${value},
-      },\n`;
-  }
-
   // PADDING & MARGIN & GAP
   let paddingStyles = "";
   let marginStyles = "";
