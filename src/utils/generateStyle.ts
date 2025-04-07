@@ -266,7 +266,7 @@ export function generateStyle({
     },\n`;
   }
   let fontWeightStyles = "";
-  const weight = [300, 400, 500, 600, 700];
+  const weight = [300, 400, 500, 600, 700, 800, 900];
   for (const w of weight) {
     fontWeightStyles += `font_weight_${w}: {
       fontWeight: '${w}',
