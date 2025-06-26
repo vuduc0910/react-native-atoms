@@ -1,6 +1,6 @@
 {
   "name": "@vuduc0801/react-native-atoms",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Build atoms ui for react native",
   "main": "./dist/index.js",
   "module": "./dist/esm/index.js",
@@ -54,5 +54,8 @@
   "bugs": {
     "url": "https://github.com/vuduc0910/react-native-atoms/issues"
   },
-  "homepage": "https://github.com/vuduc0910/react-native-atoms#readme"
+  "homepage": "https://github.com/vuduc0910/react-native-atoms#readme",
+  "overrides": {
+    "glob": "^10.3.10"
+  }
 }
