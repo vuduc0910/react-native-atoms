@@ -1,30 +1,21 @@
 import type { AtomsStyle, ThemeToken } from "../types/theme";
 
+const PREFIXES: Record<string, string> = {
+  text_: "color",
+  bg_: "backgroundColor",
+  stroke_: "borderColor",
+  border_: "borderColor",
+  shadow_: "shadowColor",
+};
+
 export function generateTheme<T extends ThemeToken>(theme: T): AtomsStyle<T> {
   const data: ThemeToken = {};
   for (const [key, value] of Object.entries(theme)) {
-    if (key.startsWith("text_")) {
-      data[key] = {
-        color: value,
-      };
-      continue;
-    }
-    if (key.startsWith("bg_")) {
-      data[key] = {
-        backgroundColor: value,
-      };
-      continue;
-    }
-    if (key.startsWith("stroke_") || key.startsWith("border_")) {
-      data[key] = {
-        borderColor: value,
-      };
-      continue;
-    }
-    if (key.startsWith("shadow_")) {
-      data[key] = {
-        shadowColor: value,
-      };
+    for (const [prefix, property] of Object.entries(PREFIXES)) {
+      if (key.startsWith(prefix)) {
+        data[key] = { [property]: value };
+        break;
+      }
     }
   }
 

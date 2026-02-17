@@ -9,20 +9,25 @@ export type ShadowProps = {
   elevation?: number; // for android
 };
 
-type StartsWith<
-  S extends string,
-  Prefix extends string
-> = S extends `${Prefix}${infer _}` ? true : false;
+type PrefixStyleMap = {
+  bg_: ViewStyle;
+  stroke_: ViewStyle;
+  border_: ViewStyle;
+  shadow_: ViewStyle;
+  text_: TextStyle;
+};
+
+type StyleForKey<K extends string> = {
+  [P in keyof PrefixStyleMap]: K extends `${P & string}${string}`
+    ? PrefixStyleMap[P]
+    : never;
+}[keyof PrefixStyleMap];
 
 export type AtomsStyle<T> = {
   [K in keyof T]: K extends string
-    ? StartsWith<K, "bg_"> extends true
-      ? ViewStyle
-      : StartsWith<K, "stroke_"> extends true
-      ? ViewStyle
-      : StartsWith<K, "text_"> extends true
-      ? TextStyle
-      : TextStyle | ViewStyle
+    ? StyleForKey<K> extends never
+      ? TextStyle | ViewStyle
+      : StyleForKey<K>
     : TextStyle | ViewStyle;
 };
 

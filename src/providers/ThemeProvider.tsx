@@ -27,16 +27,17 @@ export function ThemeColorProvider<
   T extends ThemeToken,
   S extends ColorSchemaName
 >({ children, colorScheme, themeModes }: ThemeProviderProps<T, S>) {
-  const theme = useMemo(() => {
+  const value = useMemo(() => {
     const currentTheme = themeModes[colorScheme];
     if (!currentTheme) {
       throw new Error(`Invalid color scheme: ${colorScheme}`);
     }
-    return currentTheme as T;
+    const atoms = generateTheme<T>(currentTheme as T);
+    return { atoms, colorScheme } as const;
   }, [colorScheme, themeModes]);
-  const atoms = generateTheme<T>(theme);
+
   return (
-    <ThemeContext.Provider value={{ atoms, colorScheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );
